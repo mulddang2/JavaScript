@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나이 계산하기</title>
+</head>
+<body>
+    <script>
+        var currentYear = 2022;
+        var birthYear;
+        var age;
+        //
+        birthYear = prompt ("태어난 연도를 입력하세요. (YYYY)","");
+        age = currentYear - birthYear + 1;
+        document.write(currentYear + "년 현재<br>");
+        document.write(birthYear + "년에 태어난 사람의 나이는 " + age + "세입니다.");
+        
+        //prompt() 함수는 사용자에게 윈도우 창을 띄워 데이터를 입력받을 수 있는 함수입니다.
+        //prompt() -> 이 괄호 안에는 ("윈도우창에 입력될 내용", "입력부분에 입력될 내용")
+        
+    </script>
+</body>
+</html>
