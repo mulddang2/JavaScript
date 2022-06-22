@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if~else예제</title>
+</head>
+<body>
+
+    <script>
+        /*
+        변수명
+        memNum = 입장객 수
+        colNum = 한줄에 앉을 사람 수
+        rowNum = 필요한 줄 갯수
+        */
+        var memNum = prompt("입장객은 몇 명이야?")
+        var colNum = prompt("한줄에 몇명씩 앉아야돼?")
+
+        if(memNum % colNum === 0)
+            rowNum = parseInt(memNum / colNum) 
+            //parseInt는 괄호의 값이 실수일 때, 정수로 바꿔주는 함수
+        else
+            rowNum = parseInt(memNum / colNum) + 1;
+
+        document.write("모두" + rowNum + "개의 줄이 필요합니다.")
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
