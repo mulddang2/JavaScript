@@ -1,5 +1,5 @@
 function solution(n, numlist) {
-    return numlist.filter((a) => a % n === 0);
+    return numlist.filter(a => a % n === 0);
 }
 console.log(solution(5, [1, 9, 3, 10, 13, 5]));
 
