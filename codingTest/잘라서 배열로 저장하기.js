@@ -2,7 +2,7 @@ function solution(my_str, n) {
     let answer = [];
     let strArr = my_str.split("");
 
-    for (let i = 0; i <= my_str.length / n; i++) {
+    for (let i = 0; i < my_str.length / n; i++) {
         let spjo = strArr.splice(0, n).join("");
         answer.push(spjo);
     }
