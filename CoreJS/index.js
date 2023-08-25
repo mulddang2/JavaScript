@@ -1,36 +1,27 @@
-console.log(sum(1, 2))
-// console.log(multiply(3, 4))
+// NOTE: 1) 최대/최솟값을 구하는 코드 직접 구현
+// var numbers = [10, 20, 3, 16, 45]
+// var max = min = numbers[0]
 
-// NOTE: 함수 선언문 => 함수 전체를 호이스팅함
-// NOTE: 아래에서 sum함수를 함수 선언문으로 실수로 만든 경우, 윗부분에서 숫자 값을 반환하리라 기대했지만 override.
-function sum(a, b) {
-  return a + b;
-}
+// numbers.forEach(function(number) {
+//     if(number > max) {
+//         max = number;
+//     }
+//     if (number < min) {
+//         min = number;
+//     }
+// })
 
-var a = sum(1, 1)
+// console.log(max, min)
 
+// NOTE: 2) call/apply 메서드 활용
+// var numbers = [10, 20, 3, 16, 45]
+// var max = Math.max.apply(null, numbers)
+// var min = Math.min.apply(null, numbers)
 
-function sum(a, b) {
-  return a + '+' + b + '=' + (a + b);
-}
+// console.log(max, min)
 
-var c = sum(5, 5)
-console.log(c)
-
-// NOTE: 함수 표현식 => 변수 선언부만 호이스팅됨, 변수의 할당부는 원래 자리에 남겨둔다. 
-// var multiply = function multiply(a, b) {
-//   return a * b;
-// }
-
-
-// var sum = function sum (a, b) {
-//   return a + b
-// }
-// var multiply;
-// console.log(sum(1, 2))
-// console.log(multiply(3, 4))
-
-// multiply = function (a, b) {
-//   return a * b
-// }
-
+// NOTE: 3) ES6 펼치기 연산자 활용
+const numbers = [10, 20, 3, 16, 45]
+const max = Math.max(...numbers)
+const min = Math.min(...numbers)
+console.log(max, min)
