@@ -1,15 +1,37 @@
-// NOTE: bind 메서드는 함수에 this를 미리 적용하는 것, 부분 적용 함수를 구현하는 목적 둘다 있다.
-var func = function(a, b, c, d) {
-  console.log(this, a, b, c, d) // this는 window/global이  나오겠고 1, 2, 3, 4 
-}
+// NOTE: 상위 컨텍스트의 this를 내부함수나 콜백 함수에 전달하기
+// var obj = {
+//   outer: function() {
+//     console.log(this)
+//     var innerFunc = function (){
+//       console.log(this)
+//     }
+//     innerFunc.call(this)
+//   }
+// }
+// obj.outer()
 
-func(1, 2, 3, 4)
+// var obj = {
+//   outer: function () {
+//     console.log(this);
+//     var innerFunc = function () {
+//       console.log(this)
+//     }.bind(this) // 내부함수에 bind로 this를 전달하면, 여기서 this는 obj를..
+//     innerFunc()
+//   },
+// };
+// obj.outer();
 
-var bindFunc1 = func.bind({ x: 1 })
-bindFunc1(5, 6, 7, 8) // { x: 1 } 5 6 7 8
+var obj = {
+  logThis: function () {
+    console.log(this);
+  },
+  logThisLater1: function () {
+    setTimeout(this.logThis, 500);
+  },
+  logThisLater2: function () {
+    setTimeout(this.logThis.bind(this), 500);
+  },
+};
 
-// NOTE: func 에 this를 { x: 2} 로 지정하고, 인수를 4, 5로 지정함
-var bindFunc2 = func.bind({ x: 2}, 4, 5) // this 지정, 부분 적용 함수 구현
-bindFunc2(6, 7) // { x: 2 } 4 5 6 7
-bindFunc2(8, 9) // { x: 2 } 4 5 8 9
-
+obj.logThisLater1() //Window {0: Window, window: Window, self: Window, document: document, name: '', location: Location, …}
+obj.logThisLater2() // obj {logThis: ƒ, logThisLater1: ƒ, logThisLater2: ƒ} 를 가리킨다.
