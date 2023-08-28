@@ -1,28 +1,35 @@
-// NOTE: 콜백지옥 해결 - 기명함수로 변환
-
-var coffeeList = '';
-
-var addEspresso = function (name) {
-  coffeeList = name;
-  console.log(coffeeList);
-  setTimeout(addAmericano, 3000, '아메리카노');
-};
-
-var addAmericano = function (name) {
-  coffeeList += ',' + name;
-  console.log(coffeeList);
-  setTimeout(addMocha, 3000, '카페모카');
-};
-
-var addMocha = function (name) {
-  coffeeList += ',' + name;
-  console.log(coffeeList);
-  setTimeout(addLatte, 3000, '카페라떼');
-};
-
-var addLatte = function (name) {
-  coffeeList += ',' + name;
-  console.log(coffeeList)
-}
-
-setTimeout(addEspresso, 3000, '에스프레소')
+// NOTE: 비동기 작업의 동기적 표현 - Promise(1)
+new Promise(function (resolve) {
+  setTimeout(function () {
+    var name = '에스프레소';
+    console.log(name);
+    resolve(name);
+  }, 500);
+})
+  .then(function (Name) {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        var name = Name + ', 아메리카노';
+        console.log(name);
+        resolve(name);
+      }, 1000);
+    });
+  })
+  .then(function (prevName) {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        var name = prevName + ', 카페모카';
+        console.log(name);
+        resolve(name);
+      }, 1500);
+    });
+  })
+  .then(function (prevName) {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        var name = prevName + ', 카페라떼';
+        console.log(name);
+        resolve(name);
+      }, 2000);
+    });
+  });
